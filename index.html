@@ -71,6 +71,22 @@
     const rolemaster = ["The Muscle","The Brains","The Driver","The Hacker","The Thief","The Face"]
     var rolelist = rolemaster.slice(0);
     const descriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Incompetent"];
+    const recruitmaster = [
+        "Joining you is a",
+        "You hit the dive bar and come up with a",
+        "Also along is your old friend, a",
+        "You need the best, so you call in a",
+        "Of course, for this plan to work, you're going to need a",
+        "One of your contacts recommended a",
+        "Through the grapevine you heard about a",
+        "You received an unsolicited resume from a",
+        "Your first choice passed, but instead recommended a"
+    ];
+    recruittext = recruitmaster.slice(0);
+    const hatlist = ["Trilby","Top Hat","Bowler","Flat-Cap","Stetson","Fez","Crown","Beret","Beanie","Baseball Hat","Turban","Deerstalker Cap","Pith Helmet","Ushanka",
+    "Sombrero","Tricorne","Balmoral Bonnet","Campaign hat","Fascinator","Hard Hat","Wimple","Yarmulke","Mitre","Panama Hat","Pillbox Hat","Porkpie Hat","Santa Hat","Sun Hat",
+    "Chef's Hat","Wizard's Hat","Rainbow Clown Wig","Beer Hat","Blond Toupee","Blonde Wig","Daisy Chain","Wreath of Laurels","Pair of Cat Ears","Pair of Bunny Ears","Tiara",
+    "Complete Native American Headdress","Glass Diving Bell","1950s Style Astronaut Helmet","Tinfoil Hat","Comedy Arrow Headband"];
     const doublehatchance = 12.5;
     const beartypes = 
         [
@@ -100,11 +116,9 @@
                 skill:"scavenging"
             },{
                 name:"Sloth Bear",
-                skill:"Mimicry"
+                skill:"mimicry"
             }
         ];
-    const recruittext = ["Joining you is a","You hit the dive bar and come up with a","Also along is your old friend, a","You need the best, so you call in a","Of course, for this plan to work, you're going to need a"];
-    const hatlist = ["Trilby","Top Hat","Bowler","Flat-Cap","Stetson","Fez","Crown","Beret","Beanie","Baseball Hat","Turban","Deerstalker Cap","Pith Helmet","Ushanka","Sombrero","Tricorne","Balmoral Bonnet","Campaign hat","Fascinator","Hard Hat","Wimple","Yarmulke","Mitre","Panama Hat","Pillbox Hat","Porkpie Hat","Santa Hat","Sun Hat","Chef's Hat","Wizard's Hat","Rainbow Clown Wig","Beer Hat","Blond Toupee","Blonde Wig","Daisy Chain","Wreath of Laurels","Pair of Cat Ears","Pair of Bunny Ears","Tiara","Complete Native American Headdress","Glass Diving Bell","1950s Style Astronaut Helmet","Tinfoil Hat","Comedy Arrow Headband"];
     var bears = [];
 
     function getHatString() {
@@ -137,7 +151,7 @@
 
         if(bears.length === 0) {bearobj.rt = "Behind the heist, the first one to come up with the idea, you are a" + bearobj.extrachar + "...";}
         else if (bears.length >= 1) {
-            bearobj.rt = recruittext[Math.floor(Math.random()*recruittext.length)] + bearobj.extrachar + "...";
+            bearobj.rt = recruittext.splice(Math.floor(Math.random()*recruittext.length),1) + bearobj.extrachar + "...";
             bearobj.pronoun = "they";
         }
 
@@ -178,6 +192,7 @@
         document.getElementById("skill-output").innerHTML = "";
         document.getElementById("job-output").innerHTML = "";
         rolelist = rolemaster.slice(0);
+        recruittext = recruitmaster.slice(0);
         for(let i = 1;i<=6;i++) document.getElementById("bear-button-"+i).className="btn hidden";
         bears = [];
         newBear();
