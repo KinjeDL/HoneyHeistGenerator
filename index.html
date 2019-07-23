@@ -1,7 +1,86 @@
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Green */
+.green {
+  color: green;
+}
+
+.success:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Blue */
+.info {
+  color: dodgerblue;
+}
+
+.info:hover {
+  background: #2196F3;
+  color: white;
+}
+
+/* Orange */
+.warning {
+  color: orange;
+}
+
+.warning:hover {
+  background: #ff9800;
+  color: white;
+}
+
+/* Red */
+.red {
+  color: red;
+}
+
+.danger:hover {
+  background: #f44336;
+  color: white;
+}
+
+/* Gray */
+.default {
+  color: black;
+}
+
+.default:hover {
+  background: #e7e7e7;
+}
+</style>
 <body>
-<h1>Honey Heist Bear Builder</h1>
-<p>by Kinje.</p>
+<!-- Content will go here -->
+
+<button onclick="reset()" class="btn red">Start Over</button>
+<button onclick="assignRole()" class="btn green">Assign A Role</button>
+
+<p id="Output"> </p>
+
+<script>
+    // Automatic Slideshow - change image every 3 seconds
+    var rolesassigned = 0;
+    var rolelist = ["Muscle","Brains","Driver","Hacker","Thief","Face"];
+    
+    function assignRole() {
+        let rand = Math.floor(Math.random()*rolelist.length);
+        document.getElementById("Output").innerHTML = "Your role is: " + rolelist.splice(rand,1);
+    }
+    function reset() {
+        rolelist = ["Muscle","Brains","Driver","Hacker","Thief","Face"];
+    }
+    </script>
 </body>
 </html>
