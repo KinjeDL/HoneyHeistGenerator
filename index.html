@@ -65,20 +65,77 @@
 <!-- Content will go here -->
 
 <button onclick="reset()" class="btn red">Start Over</button>
-<button onclick="assignRole()" class="btn green">Assign A Role</button>
+<button onclick="buildABear()" class="btn green">Assign A Role</button>
 
-<p id="Output"> </p>
+<h1 id="header-output"> Select &#39;Assign A Role to begin.&#39; </h1>
+<p id="bear-output" style="font-size:160%;"></p>
+<p id="skill-output" style="font-size:160%;"></p>
+<p id="job-output-1" style="font-size:160%;"></p>
+<b><p id="job-output-2" style="font-size:160%;"></p></b>
 
 <script>
-    // Automatic Slideshow - change image every 3 seconds
-    var rolesassigned = 0;
     var rolelist = ["Muscle","Brains","Driver","Hacker","Thief","Face"];
-    
-    function assignRole() {
-        let rand = Math.floor(Math.random()*rolelist.length);
-        document.getElementById("Output").innerHTML = "Your role is: " + rolelist.splice(rand,1);
+    var descriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Incompetent"];
+    var beartypes = 
+        [
+            {
+                name:"Grizzly Bear",
+                skill:"terrify"
+            },{
+                name:"Polar Bear",
+                skill:"swim"
+            },{
+                name:"Panda Bear",
+                skill:"eat anything that looks like bamboo"
+            },{
+                name:"Black Bear",
+                skill:"climb"
+            },{
+                name:"Sun Bear",
+                skill:"sense honey"
+            },{
+                name:"Honey Badger",
+                skill:"inflict carnage"
+            }
+        ];
+    var hatlist = ["Trilby","Top Hat","Bowler","Flat-Cap","Cowboy Hat","Fez","Crown","Bonus"];
+
+    function getHatString() {
+        let hs = "";
+        let hatnum = Math.floor(Math.random()*hatlist.length);
+        if(hatnum === hatlist.length - 1) {
+            let hatnumone = Math.floor((Math.random()*hatlist.length) - 1);
+            let hatnumtwo = Math.floor((Math.random()*hatlist.length) - 1);
+            while(hatnumtwo === hatnumone) hatnumtwo = Math.floor((Math.random()*hatlist.length) - 1);
+            return hatlist[hatnumone] + " with a " + hatlist[hatnumtwo] + " perched on top";
+        }
+        return hatlist[hatnum];
+    }
+
+    function buildABear() {
+        let role = rolelist.splice(Math.floor(Math.random()*rolelist.length),1);
+        let descriptor = descriptors[Math.floor(Math.random()*descriptors.length)];
+        let beartype = beartypes[Math.floor(Math.random()*beartypes.length)];
+        if(rolelist.length < 1) {
+            document.getElementById("header-output").innerHTML = "All Roles Assigned!  Select &#39;Start Over&#39; to reset roles available.";
+            document.getElementById("bear-output").innerHTML = "";
+            document.getElementById("skill-output").innerHTML = "";
+            document.getElementById("job-output-1").innerHTML = "";
+            document.getElementById("job-output-2").innerHTML = "";
+            return; 
+        }
+        document.getElementById("header-output").innerHTML = "You are a...";
+        document.getElementById("bear-output").innerHTML = descriptor + " " + beartype.name + ", wearing a " + getHatString() + ".";
+        document.getElementById("skill-output").innerHTML = "As a " + beartype.name + ", of course, you can always be called on to " + beartype.skill + ",";
+        document.getElementById("job-output-1").innerHTML = "but for this job, you came along as the";
+        document.getElementById("job-output-2").innerHTML = role + "!";
     }
     function reset() {
+        document.getElementById("header-output").innerHTML = "Roles Reset, select &#39;Assign A Role to begin.&#39;";
+        document.getElementById("bear-output").innerHTML = "";
+        document.getElementById("skill-output").innerHTML = "";
+        document.getElementById("job-output-1").innerHTML = "";
+        document.getElementById("job-output-2").innerHTML = "";
         rolelist = ["Muscle","Brains","Driver","Hacker","Thief","Face"];
     }
     </script>
