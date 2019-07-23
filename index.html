@@ -48,7 +48,6 @@
 }
 </style>
 <body onload="newBear()">
-<!-- Content will go here -->
 
 <button onclick="reset()" class="btn red">Scrap the Team</button>
 <button onclick="newBear()" class="btn green">Recruit a Bear</button>
@@ -69,13 +68,15 @@
 </footer>
 
 <script>
-    var rolelist = ["Muscle","Brains","Driver","Hacker","Thief","Face"];
-    var descriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Incompetent"];
-    var beartypes = 
+    const rolemaster = ["The Muscle","The Brains","The Driver","The Hacker","The Thief","The Face"]
+    var rolelist = rolemaster.slice(0);
+    const descriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Incompetent"];
+    const doublehatchance = 12.5;
+    const beartypes = 
         [
             {
                 name:"Grizzly Bear",
-                skill:"terrifing"
+                skill:"terrifying"
             },{
                 name:"Polar Bear",
                 skill:"swimming"
@@ -90,24 +91,34 @@
                 skill:"sensing honey"
             },{
                 name:"Honey Badger",
-                skill:"inflicting carnage"
+                skill:"carnage"
+            },{
+                name:"Red Panda",
+                skill:"distraction"
+            },{
+                name:"Grolar Bear",
+                skill:"scavenging"
+            },{
+                name:"Sloth Bear",
+                skill:"Mimicry"
             }
         ];
-    var recruittext = ["Joining you is a","You hit the dive bar and come up with a","Also along is your old friend, a","You need the best, so you call in a","Of course, for this plan to work, you're going to need a"];
-    var hatlist = ["Trilby","Top Hat","Bowler","Flat-Cap","Cowboy Hat","Fez","Crown","Bonus"];
-    var actualhats = hatlist.slice(0,hatlist.length);
+    const recruittext = ["Joining you is a","You hit the dive bar and come up with a","Also along is your old friend, a","You need the best, so you call in a","Of course, for this plan to work, you're going to need a"];
+    const hatlist = ["Trilby","Top Hat","Bowler","Flat-Cap","Stetson","Fez","Crown","Beret","Beanie","Baseball Hat","Turban","Deerstalker Cap","Pith Helmet","Ushanka","Sombrero","Tricorne","Balmoral Bonnet","Campaign hat","Fascinator","Hard Hat","Wimple","Yarmulke","Mitre","Panama Hat","Pillbox Hat","Porkpie Hat","Santa Hat","Sun Hat","Chef's Hat","Wizard's Hat","Rainbow Clown Wig","Beer Hat","Blond Toupee","Blonde Wig","Daisy Chain","Wreath of Laurels","Pair of Cat Ears","Pair of Bunny Ears","Tiara","Complete Native American Headdress","Glass Diving Bell","1950s Style Astronaut Helmet","Tinfoil Hat","Comedy Arrow Headband"];
     var bears = [];
 
     function getHatString() {
         let hs = "";
-        let hatnum = Math.floor(Math.random()*hatlist.length);
-        if(hatnum === hatlist.length - 1) {
-            let hatnumone = Math.floor((Math.random()*(actualhats.length-1)));
-            let hatnumtwo = Math.floor((Math.random()*(actualhats.length-1)));
-            while(hatnumtwo === hatnumone) hatnumtwo = Math.floor((Math.random()*(actualhats.length-1)));
-            return hatlist[hatnumone] + " with a " + hatlist[hatnumtwo] + " perched on top";
+        let hatnumone = Math.floor(Math.random()*hatlist.length);
+        let string = hatlist[hatnumone];
+        let hatn = "";
+        if(Math.random()*100 <= doublehatchance) {
+            let hatnumtwo = Math.floor((Math.random()*(hatlist.length)));
+            while(hatnumtwo === hatnumone) hatnumtwo = Math.floor((Math.random()*(hatlist.length)));
+            if(hatlist[hatnumtwo].charAt(0) === "A" || hatlist[hatnumtwo].charAt(0) === "E" || hatlist[hatnumtwo].charAt(0) === "I" || hatlist[hatnumtwo].charAt(0) === "O") hatn = "n"
+            return hatlist[hatnumone] + " AND a" + hatn + " " + hatlist[hatnumtwo];
         }
-        return hatlist[hatnum];
+        return string;
     }
 
     function buildBear(rolenum) {
@@ -151,11 +162,13 @@
     }
 
     function showBear(bear) {
-        if(typeof bear !== null) {        
+        if(typeof bear !== null) {
+            let hatn = "";
             document.getElementById("header-output").innerHTML = bear.rt;
-            document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold() + ", wearing a " + bear.hatstring.bold() + ".";
-            document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", " + bear.pronoun + " have a special talent for " + bear.beartype.skill.bold() + ",";
-            document.getElementById("job-output").innerHTML = "but for this job, " + bear.pronoun + " came along as the " + bear.role.bold() + "!";
+            if(bear.hatstring.charAt(0) === "A" || bear.hatstring.charAt(0) === "E" || bear.hatstring.charAt(0) === "I" || bear.hatstring.charAt(0) === "O") hatn = "n"
+            document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold() + ", wearing a" + hatn + " " + bear.hatstring.bold() + ".";
+            document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", " + bear.pronoun + " have a special talent for " + bear.beartype.skill.bold() + ".";
+            document.getElementById("job-output").innerHTML = "For this job, " + bear.pronoun + " came along as " + bear.role.bold() + "!";
         }
     }
 
@@ -164,7 +177,7 @@
         document.getElementById("bear-output").innerHTML = "";
         document.getElementById("skill-output").innerHTML = "";
         document.getElementById("job-output").innerHTML = "";
-        rolelist = ["Muscle","Brains","Driver","Hacker","Thief","Face"];
+        rolelist = rolemaster.slice(0);
         for(let i = 1;i<=6;i++) document.getElementById("bear-button-"+i).className="btn hidden";
         bears = [];
         newBear();
