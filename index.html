@@ -47,13 +47,13 @@
     visibility:hidden;
 }
 </style>
-<body>
+<body onload="newBear()">
 <!-- Content will go here -->
 
-<button onclick="reset()" class="btn red">Start Over</button>
-<button onclick="newBear()" class="btn green">Assign A Role</button>
+<button onclick="reset()" class="btn red">Scrap the Team</button>
+<button onclick="newBear()" class="btn green">Recruit a Bear</button>
 
-<h1 id="header-output"> Select &#39;Assign A Role to begin.&#39; </h1>
+<h1 id="header-output">  </h1>
 <p id="bear-output" style="font-size:160%;"></p>
 <p id="skill-output" style="font-size:160%;"></p>
 <p id="job-output" style="font-size:160%;"></p>
@@ -93,6 +93,7 @@
                 skill:"inflict carnage"
             }
         ];
+    var recruittext = ["Joining you is a","You hit the dive bar and come up with a","Also along is your old friend, a","You need the best, so you call in a","Of course, for this plan to work, you're going to need a"];
     var hatlist = ["Trilby","Top Hat","Bowler","Flat-Cap","Cowboy Hat","Fez","Crown","Bonus"];
     var actualhats = hatlist.slice(0,hatlist.length);
     var bears = [];
@@ -143,10 +144,11 @@
 
     function showBear(bear) {
         if(typeof bear !== null) {
-        document.getElementById("header-output").innerHTML = "You are a" + bear.extrachar + "...";
-        document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold() + ", wearing a " + bear.hatstring.bold() + ".";
-        document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", of course, you can always be called on to " + bear.beartype.skill.bold() + ",";
-        document.getElementById("job-output").innerHTML = "but for this job, you came along as the " + bear.role.bold() + "!";
+            if(bears.length <= 1) document.getElementById("header-output").innerHTML = "Behind the heist, the first one to come up with the idea, you are a" + bear.extrachar + "...";
+            if(bears.length > 1) document.getElementById("header-output").innerHTML = recruittext[Math.floor(Math.random() * recruittext.length)] + bear.extrachar + "...";
+            document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold() + ", wearing a " + bear.hatstring.bold() + ".";
+            document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", of course, you can always be called on to " + bear.beartype.skill.bold() + ",";
+            document.getElementById("job-output").innerHTML = "but for this job, you came along as the " + bear.role.bold() + "!";
         }
     }
 
