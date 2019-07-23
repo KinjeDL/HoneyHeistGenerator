@@ -75,22 +75,22 @@
         [
             {
                 name:"Grizzly Bear",
-                skill:"terrify"
+                skill:"terrifing"
             },{
                 name:"Polar Bear",
-                skill:"swim"
+                skill:"swimming"
             },{
                 name:"Panda Bear",
-                skill:"eat anything that looks like bamboo"
+                skill:"eating anything that looks like bamboo"
             },{
                 name:"Black Bear",
-                skill:"climb"
+                skill:"climbing"
             },{
                 name:"Sun Bear",
-                skill:"sense honey"
+                skill:"sensing honey"
             },{
                 name:"Honey Badger",
-                skill:"inflict carnage"
+                skill:"inflicting carnage"
             }
         ];
     var recruittext = ["Joining you is a","You hit the dive bar and come up with a","Also along is your old friend, a","You need the best, so you call in a","Of course, for this plan to work, you're going to need a"];
@@ -147,7 +147,7 @@
             if(bears.length <= 1) document.getElementById("header-output").innerHTML = "Behind the heist, the first one to come up with the idea, you are a" + bear.extrachar + "...";
             if(bears.length > 1) document.getElementById("header-output").innerHTML = recruittext[Math.floor(Math.random() * recruittext.length)] + bear.extrachar + "...";
             document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold() + ", wearing a " + bear.hatstring.bold() + ".";
-            document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", of course, you can always be called on to " + bear.beartype.skill.bold() + ",";
+            document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", they have a special talent for " + bear.beartype.skill.bold() + ",";
             document.getElementById("job-output").innerHTML = "but for this job, you came along as the " + bear.role.bold() + "!";
         }
     }
