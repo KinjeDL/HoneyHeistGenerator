@@ -57,6 +57,12 @@
   color: black;
 }
 
+.hidden
+{
+    color: black;
+    visibility:hidden;
+}
+
 .default:hover {
   background: #e7e7e7;
 }
@@ -65,12 +71,21 @@
 <!-- Content will go here -->
 
 <button onclick="reset()" class="btn red">Start Over</button>
-<button onclick="buildABear()" class="btn green">Assign A Role</button>
+<button onclick="newBear()" class="btn green">Assign A Role</button>
 
 <h1 id="header-output"> Select &#39;Assign A Role to begin.&#39; </h1>
 <p id="bear-output" style="font-size:160%;"></p>
 <p id="skill-output" style="font-size:160%;"></p>
 <p id="job-output" style="font-size:160%;"></p>
+
+<footer>
+    <button onclick="showBear(bears[0])" style="font-size:130%;" class="btn hidden" id="bear-button-1">Bear 1</button>
+    <button onclick="showBear(bears[1])" style="font-size:130%;" class="btn hidden" id="bear-button-2">Bear 2</button>
+    <button onclick="showBear(bears[2])" style="font-size:130%;" class="btn hidden" id="bear-button-3">Bear 3</button>
+    <button onclick="showBear(bears[3])" style="font-size:130%;" class="btn hidden" id="bear-button-4">Bear 4</button>
+    <button onclick="showBear(bears[4])" style="font-size:130%;" class="btn hidden" id="bear-button-5">Bear 5</button>
+    <button onclick="showBear(bears[5])" style="font-size:130%;" class="btn hidden" id="bear-button-6">Bear 6</button>
+</footer>
 
 <script>
     var rolelist = ["Muscle","Brains","Driver","Hacker","Thief","Face"];
@@ -99,6 +114,7 @@
         ];
     var hatlist = ["Trilby","Top Hat","Bowler","Flat-Cap","Cowboy Hat","Fez","Crown","Bonus"];
     var actualhats = hatlist.slice(0,hatlist.length);
+    var bears = [];
 
     function getHatString() {
         let hs = "";
@@ -112,11 +128,24 @@
         return hatlist[hatnum];
     }
 
-    function buildABear() {
+    function buildBear(rolenum) {
+        let bearobj = {
+        role: rolelist[rolenum],
+        descriptor: descriptors[Math.floor(Math.random()*descriptors.length)],
+        beartype: beartypes[Math.floor(Math.random()*beartypes.length)],
+        hatstring: getHatString(),
+        extrachar: "",
+        num: bears.length,
+        };
+        
+        if(bearobj.descriptor === "Unhinged" || bearobj.descriptor === "Incompetent") bearobj.extrachar = "n"
+
+        return bearobj;
+    }
+
+    function newBear() {
         let roleroll = Math.floor(Math.random()*rolelist.length);
-        let role = rolelist[roleroll];
-        let descriptor = descriptors[Math.floor(Math.random()*descriptors.length)];
-        let beartype = beartypes[Math.floor(Math.random()*beartypes.length)];
+        let bear = buildBear(roleroll);
         if(rolelist.length === 0) {
             document.getElementById("header-output").innerHTML = "All Roles Assigned!  Select &#39;Start Over&#39; to reset roles available.";
             document.getElementById("bear-output").innerHTML = "";
@@ -125,19 +154,29 @@
             return; 
         }
         rolelist.splice(roleroll,1);
-        let extrachar = "";
-        if(descriptor === "Unhinged" || descriptor === "Incompetent") extrachar = "n"
-        document.getElementById("header-output").innerHTML = "You are a" + extrachar + "...";
-        document.getElementById("bear-output").innerHTML = descriptor.bold() + " " + beartype.name.bold() + ", wearing a " + getHatString().bold() + ".";
-        document.getElementById("skill-output").innerHTML = "As a " + beartype.name + ", of course, you can always be called on to " + beartype.skill.bold() + ",";
-        document.getElementById("job-output").innerHTML = "but for this job, you came along as the " + role.bold() + "!";
+        bears.push(bear);
+        showBear(bear);
+        document.getElementById("bear-button-"+bears.length.toString()).innerHTML=bear.role.bold();
+        document.getElementById("bear-button-"+bears.length.toString()).className="btn default";
     }
+
+    function showBear(bear) {
+        if(typeof bear !== null) {
+        document.getElementById("header-output").innerHTML = "You are a" + bear.extrachar + "...";
+        document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold() + ", wearing a " + bear.hatstring.bold() + ".";
+        document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", of course, you can always be called on to " + bear.beartype.skill.bold() + ",";
+        document.getElementById("job-output").innerHTML = "but for this job, you came along as the " + bear.role.bold() + "!";
+        }
+    }
+
     function reset() {
         document.getElementById("header-output").innerHTML = "Roles Reset, select &#39;Assign A Role to begin.&#39;";
         document.getElementById("bear-output").innerHTML = "";
         document.getElementById("skill-output").innerHTML = "";
         document.getElementById("job-output").innerHTML = "";
         rolelist = ["Muscle","Brains","Driver","Hacker","Thief","Face"];
+        for(let i = 1;i<=6;i++) document.getElementById("bear-button-"+i).className="btn hidden";
+        bears = [];
     }
     </script>
 </body>
