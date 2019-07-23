@@ -116,7 +116,7 @@
         let role = rolelist.splice(Math.floor(Math.random()*rolelist.length),1);
         let descriptor = descriptors[Math.floor(Math.random()*descriptors.length)];
         let beartype = beartypes[Math.floor(Math.random()*beartypes.length)];
-        if(rolelist.length < 1) {
+        if(rolelist.length < 0) {
             document.getElementById("header-output").innerHTML = "All Roles Assigned!  Select &#39;Start Over&#39; to reset roles available.";
             document.getElementById("bear-output").innerHTML = "";
             document.getElementById("skill-output").innerHTML = "";
