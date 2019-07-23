@@ -118,9 +118,17 @@
         hatstring: getHatString(),
         extrachar: "",
         num: bears.length,
+        rt: "",
+        pronoun: "you"
         };
-        
-        if(bearobj.descriptor === "Unhinged" || bearobj.descriptor === "Incompetent") bearobj.extrachar = "n"
+
+        if(bearobj.descriptor === "Unhinged" || bearobj.descriptor === "Incompetent") bearobj.extrachar = "n";
+
+        if(bears.length === 0) {bearobj.rt = "Behind the heist, the first one to come up with the idea, you are a" + bearobj.extrachar + "...";}
+        else if (bears.length >= 1) {
+            bearobj.rt = recruittext[Math.floor(Math.random()*recruittext.length)] + bearobj.extrachar + "...";
+            bearobj.pronoun = "they";
+        }
 
         return bearobj;
     }
@@ -143,19 +151,11 @@
     }
 
     function showBear(bear) {
-        if(typeof bear !== null) {
-            let pronoun = "you";
-            if(bears.length <= 1) {
-                document.getElementById("header-output").innerHTML = "Behind the heist, the first one to come up with the idea, you are a" + bear.extrachar + "...";
-
-            }
-            if(bears.length > 1) {
-                document.getElementById("header-output").innerHTML = recruittext[Math.floor(Math.random() * recruittext.length)] + bear.extrachar + "...";
-                pronoun = "they";
-            }
+        if(typeof bear !== null) {        
+            document.getElementById("header-output").innerHTML = bear.rt;
             document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold() + ", wearing a " + bear.hatstring.bold() + ".";
-            document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", " + pronoun + " have a special talent for " + bear.beartype.skill.bold() + ",";
-            document.getElementById("job-output").innerHTML = "but for this job, " + pronoun + " came along as the " + bear.role.bold() + "!";
+            document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", " + bear.pronoun + " have a special talent for " + bear.beartype.skill.bold() + ",";
+            document.getElementById("job-output").innerHTML = "but for this job, " + bear.pronoun + " came along as the " + bear.role.bold() + "!";
         }
     }
 
