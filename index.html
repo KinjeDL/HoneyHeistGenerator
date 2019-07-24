@@ -140,7 +140,7 @@
     function buildBear(rolenum) {
         let bearobj = {
         role: rolelist[rolenum],
-        descriptor: descriptors[Math.floor(Math.random()*descriptors.length)],
+        descriptor: descriptors.splice(Math.floor(Math.random()*descriptors.length),1),
         beartype: beartypes[Math.floor(Math.random()*beartypes.length)],
         hatstring: getHatString(),
         extrachar: "",
