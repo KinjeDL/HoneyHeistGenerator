@@ -94,31 +94,40 @@
         [
             {
                 name:"Grizzly Bear",
-                skill:"terrifying"
+                skill:"terrifying",
+                url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Jasper_Dwayne_Reilander-4.jpg/1920px-Jasper_Dwayne_Reilander-4.jpg"
             },{
                 name:"Polar Bear",
-                skill:"swimming"
+                skill:"swimming",
+                url:"https://upload.wikimedia.org/wikipedia/commons/6/66/Polar_Bear_-_Alaska_%28cropped%29.jpg"
             },{
                 name:"Panda Bear",
-                skill:"eating anything that looks like bamboo"
+                skill:"eating anything that looks like bamboo",
+                url:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/1920px-Grosser_Panda.JPG"
             },{
                 name:"Black Bear",
-                skill:"climbing"
+                skill:"climbing",
+                url:"https://upload.wikimedia.org/wikipedia/commons/0/08/01_Schwarzb%C3%A4r.jpg"
             },{
                 name:"Sun Bear",
-                skill:"sensing honey"
+                skill:"sensing honey",
+                url:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Sitting_sun_bear.jpg/800px-Sitting_sun_bear.jpg"
             },{
                 name:"Honey Badger",
-                skill:"carnage"
+                skill:"carnage",
+                url:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Mellivora_capensis_in_Howletts_Wild_Animal_Park.jpg/1280px-Mellivora_capensis_in_Howletts_Wild_Animal_Park.jpg"
             },{
                 name:"Red Panda",
-                skill:"distraction"
+                skill:"distraction",
+                url:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/RedPandaFullBody.JPG/1280px-RedPandaFullBody.JPG"
             },{
                 name:"Grolar Bear",
-                skill:"scavenging"
+                skill:"scavenging",
+                url:"https://upload.wikimedia.org/wikipedia/commons/7/7e/Grolar.JPG"
             },{
                 name:"Sloth Bear",
-                skill:"mimicry"
+                skill:"mimicry",
+                url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sloth_Bear_Washington_DC.JPG/1280px-Sloth_Bear_Washington_DC.JPG"
             }
         ];
     var bears = [];
@@ -182,7 +191,7 @@
             let hatn = "";
             document.getElementById("header-output").innerHTML = bear.rt;
             if(bear.hatstring.charAt(0) === "A" || bear.hatstring.charAt(0) === "E" || bear.hatstring.charAt(0) === "I" || bear.hatstring.charAt(0) === "O") hatn = "n"
-            document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold() + ", wearing a" + hatn + " " + bear.hatstring.bold() + ".";
+            document.getElementById("bear-output").innerHTML = bear.descriptor.bold() + " " + bear.beartype.name.bold().link(bear.beartype.url) + ", wearing a" + hatn + " " + bear.hatstring.bold() + ".";
             document.getElementById("skill-output").innerHTML = "As a " + bear.beartype.name + ", " + bear.pronoun + " have a special talent for " + bear.beartype.skill.bold() + ".";
             document.getElementById("job-output").innerHTML = "For this job, " + bear.pronoun + " came along as " + bear.role.bold() + "!";
         }
