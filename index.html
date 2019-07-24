@@ -64,13 +64,21 @@ div.smol
     width:60%;
     font-size: 100%;
 }
+span.bearpic
+{
+    display: inline-block;
+    width:30%;
+    max-width:"640";
+    padding: 5px;
+    border:1px solid black;
+}
 header
 {
     width:60%;
 }
 footer
 {
-    position: absolute;
+    position: relative;
     bottom: 15%;
     width:60%;
 }
@@ -85,7 +93,7 @@ img{
     <button onclick="newBear()" class="btn green">Recruit a Bear</button>
 </header>
 <body onload="newBear()">
-<div class="w3-sidebar w3-bar-block" style="width:38%;right:0">
+<div class="w3-sidebar w3-bar-block" style="width:30%;right:0">
     <img src="./images/grizzly-bear.jpg" alt="Grizzly Bear" position="absolute;" id="bear-pic" max-width="640">
 </div>
 
