@@ -34,11 +34,11 @@
 }
 
 /* Gray */
-.default {
+.recall {
   color: black;
 }
 
-.default:hover {
+.recall:hover {
   background: #e7e7e7;
 }
 
@@ -70,6 +70,8 @@ header
 }
 footer
 {
+    position: absolute;
+    bottom: 15%;
     width:60%;
 }
 img{
@@ -84,7 +86,7 @@ img{
 </header>
 <body onload="newBear()">
 <div class="w3-sidebar w3-bar-block" style="width:38%;right:0">
-    <img src="./images/grizzly-bear.jpg" alt="Grizzly Bear" style="float:right;" id="bear-pic" max-width="640">
+    <img src="./images/grizzly-bear.jpg" alt="Grizzly Bear" position="absolute;" id="bear-pic" max-width="640">
 </div>
 
 <div class="div big" id="header-output"></div>
@@ -241,7 +243,7 @@ img{
         bears.push(bear);
         showBear(bear);
         document.getElementById("bear-button-"+bears.length.toString()).innerHTML=bear.role.bold();
-        document.getElementById("bear-button-"+bears.length.toString()).className="btn default";
+        document.getElementById("bear-button-"+bears.length.toString()).className="btn recall";
     }
 
     function showBear(bear) {
