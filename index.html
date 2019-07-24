@@ -70,7 +70,7 @@
 <script>
     const rolemaster = ["The Muscle","The Brains","The Driver","The Hacker","The Thief","The Face"]
     var rolelist = rolemaster.slice(0);
-    const masterdescriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Clumsy","Free-Lance","Reluctant","Hyperactive","Gregarious","Mysterious","Experienced","Reliable",
+    const masterdescriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Clumsy","Freelance","Reluctant","Hyperactive","Gregarious","Mysterious","Experienced","Reliable",
     "Excitable","Laid-Back","Cool","Shrewd","Straight-Shootin'","Maverick","Cautious","Innocuous","Bold"];
     var descriptors = masterdescriptors.slice(0);
     const recruitmaster = [
@@ -164,7 +164,7 @@
         let roleroll = Math.floor(Math.random()*rolelist.length);
         let bear = buildBear(roleroll);
         if(rolelist.length === 0) {
-            document.getElementById("header-output").innerHTML = "All Roles Assigned!  Select &#39;Start Over&#39; to reset roles available.";
+            document.getElementById("header-output").innerHTML = "All Roles Assigned!  Review the team with the buttons below, or " + "Scrap the Team".fontcolor("red") + " to start over.";
             document.getElementById("bear-output").innerHTML = "";
             document.getElementById("skill-output").innerHTML = "";
             document.getElementById("job-output").innerHTML = "";
