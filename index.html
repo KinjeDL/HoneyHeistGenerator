@@ -70,7 +70,8 @@
 <script>
     const rolemaster = ["The Muscle","The Brains","The Driver","The Hacker","The Thief","The Face"]
     var rolelist = rolemaster.slice(0);
-    const descriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Incompetent"];
+    const descriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Clumsy","Free-Lance","Reluctant","Hyperactive","Gregarious","Mysterious","Experienced","Reliable",
+    "Excitable","Laid-Back","Cool","Shrewd","Straight-Shootin'","Maverick","Cautious","Innocuous","Bold"];
     const recruitmaster = [
         "Joining you is a",
         "You hit the dive bar and come up with a",
@@ -147,7 +148,7 @@
         pronoun: "you"
         };
 
-        if(bearobj.descriptor === "Unhinged" || bearobj.descriptor === "Incompetent") bearobj.extrachar = "n";
+        if(bearobj.descriptor.charAt(0) === "A" || bearobj.descriptor.charAt(0) === "E" || bearobj.descriptor.charAt(0) === "I" || bearobj.descriptor.charAt(0) === "O"|| bearobj.descriptor.charAt(0) === "U") bearobj.extrachar = "n";
 
         if(bears.length === 0) {bearobj.rt = "Behind the heist, the first one to come up with the idea, you are a" + bearobj.extrachar + "...";}
         else if (bears.length >= 1) {
