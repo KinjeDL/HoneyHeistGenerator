@@ -70,8 +70,9 @@
 <script>
     const rolemaster = ["The Muscle","The Brains","The Driver","The Hacker","The Thief","The Face"]
     var rolelist = rolemaster.slice(0);
-    const descriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Clumsy","Free-Lance","Reluctant","Hyperactive","Gregarious","Mysterious","Experienced","Reliable",
+    const masterdescriptors = ["Rookie","Washed-Up","Retired","Unhinged","Slick","Clumsy","Free-Lance","Reluctant","Hyperactive","Gregarious","Mysterious","Experienced","Reliable",
     "Excitable","Laid-Back","Cool","Shrewd","Straight-Shootin'","Maverick","Cautious","Innocuous","Bold"];
+    var descriptors = masterdescriptors.slice(0);
     const recruitmaster = [
         "Joining you is a",
         "You hit the dive bar and come up with a",
@@ -86,7 +87,7 @@
     recruittext = recruitmaster.slice(0);
     const hatlist = ["Trilby","Top Hat","Bowler","Flat-Cap","Stetson","Fez","Crown","Beret","Beanie","Baseball Hat","Turban","Deerstalker Cap","Pith Helmet","Ushanka",
     "Sombrero","Tricorne","Balmoral Bonnet","Campaign hat","Fascinator","Hard Hat","Wimple","Yarmulke","Mitre","Panama Hat","Pillbox Hat","Porkpie Hat","Santa Hat","Sun Hat",
-    "Chef's Hat","Wizard's Hat","Rainbow Clown Wig","Beer Hat","Blond Toupee","Blonde Wig","Daisy Chain","Wreath of Laurels","Pair of Cat Ears","Pair of Bunny Ears","Tiara",
+    "Chef's Hat","Wizard's Hat","Rainbow Clown Wig","Beer Hat","Blond Toupee","Blonde Wig","Crown of Daisies","Wreath of Laurels","Pair of Cat Ears","Pair of Bunny Ears","Tiara",
     "Complete Native American Headdress","Glass Diving Bell","1950s Style Astronaut Helmet","Tinfoil Hat","Comedy Arrow Headband"];
     const doublehatchance = 12.5;
     const beartypes = 
@@ -194,6 +195,7 @@
         document.getElementById("job-output").innerHTML = "";
         rolelist = rolemaster.slice(0);
         recruittext = recruitmaster.slice(0);
+        descriptors = masterdescriptors.slice(0);
         for(let i = 1;i<=6;i++) document.getElementById("bear-button-"+i).className="btn hidden";
         bears = [];
         newBear();
